@@ -16,12 +16,12 @@ const handleBody = (body) => {
     if (!map.get(element.id)) {
       map.set(element.id, element);
       if (index != 0) {
-        sendEmail(element.title, element.code);
-        sendLineMsg(title, code);
+        // sendEmail(element.title, element.code); //暫時註解email部分
+        sendLineMsg(element.title, element.code);
       }
     }
   });
-  console.log(newList[0]);
+  console.log("index : " + index);
   index++;
 };
 const sendLineMsg = async (title, code) => {
