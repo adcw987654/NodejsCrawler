@@ -25,13 +25,14 @@ const doit = () => {
         map.set(href, subj);
         if (index != 0) {
           sendLineMsg(subj, "https://www.okx.com/support" + href);
-          fetch("https://www.okx.com/support" + href)
-            .then((res) => {
-              res.text().then((resText) => {
-                getArticleHTML(resText, subj);
-              });
-            })
-            .catch(console.log);
+          // 暫時註解寄mail部分
+          // fetch("https://www.okx.com/support" + href)
+          //   .then((res) => {
+          //     res.text().then((resText) => {
+          //       getArticleHTML(resText, subj);
+          //     });
+          //   })
+          //   .catch(console.log);
         }
       }
     }
