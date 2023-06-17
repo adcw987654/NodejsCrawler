@@ -1,13 +1,15 @@
 import fetch from "node-fetch";
 
-//5000個線程
+const threadNum = 1500;
 let count = 0;
-for (let i = 0; i < 5000; i++) {
-  fetch("http://localhost:8080/product/order", {
+const totalTicket = 100;
+const startTime = Number(new Date());
+for (let i = 0; i < threadNum; i++) {
+  fetch("http://localhost:808" + ((i % 2) + 1) + "/product/order", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      productId: 2,
+      productId: 1,
       amount: 1,
       userId: Math.random() * 10,
     }),
@@ -17,6 +19,9 @@ for (let i = 0; i < 5000; i++) {
       if (json.isSuccess) {
         count++;
         console.log("已買到票數:", count, json.msg);
+        if (count == totalTicket) {
+          console.log("total spent time :" + (Number(new Date()) - startTime));
+        }
       }
     });
 }
